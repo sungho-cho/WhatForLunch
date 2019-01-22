@@ -1,0 +1,25 @@
+<% unless @recommendations.empty? %>
+  <table>
+    <thead>
+    </thead>
+    <% 0.step(@recommendations.size,3) do |i| %>
+      <tr>
+        <% i.upto(i+2) do |j| %>
+          <% unless j >= @recommendations.size %>
+            <td>
+              <div class="container">
+                <br/><br/>
+                <%= link_to(image_tag("#{@recommendations[j]["image_url"]}", size: '300x200'), home_path) %><br/>
+                <h5><%= @recommendations[j]["name"] %></h5>
+                <%= @recommendations[j]["price"] %>
+                <%= @recommendations[j]["categories"][0]["title"] %><br/>
+                <%= image_tag("yelp_stars/web_and_ios/regular/regular_#{@recommendations[j]['rating'].to_i}#{'_half' if @recommendations[j]['rating'].truncate != @recommendations[j]['rating']}.png") %> <%= @recommendations[j]['distance'].to_i %>m away
+                <br/><br/>
+              </div>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

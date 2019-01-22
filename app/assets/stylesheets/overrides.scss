@@ -1,0 +1,98 @@
+html {
+  // Preloaded with four fonts; uncomment the one you prefer
+  font-family: 'Nunito', sans-serif;
+  // font-family: 'Bitter', serif;
+  // font-family: 'Josefin Sans', sans-serif;
+  // font-family: 'Varela Round', sans-serif;
+}
+
+body {
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+  width: 50%;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+/********** FLASH MSGS ********/
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+  color: #008000;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+  color: #800000;
+}
+
+/********** FLASH MSGs ********/
+.alert-box {
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+  background-color: #008CBA;
+  border-color: #0078a0;
+  color: #FFFFFF; }
+  .alert-box .close {
+    right: 0.25rem;
+    background: inherit;
+    color: #333333;
+    font-size: 1.375rem;
+    line-height: .9;
+    margin-top: -0.6875rem;
+    opacity: 0.3;
+    padding: 0 6px 4px;
+    position: absolute;
+    top: 50%; }
+    .alert-box .close:hover, .alert-box .close:focus {
+      opacity: 0.5; }
+  .alert-box.radius {
+    border-radius: 3px; }
+  .alert-box.round {
+    border-radius: 1000px; }
+  .alert-box.success {
+    background-color: #e8f5e9;
+    border-color: #a5d6a7;
+    color: #1b5e20; }
+  .alert-box.alert {
+    background-color: #f04124;
+    border-color: #de2d0f;
+    color: #FFFFFF; }
+  .alert-box.secondary {
+    background-color: #e7e7e7;
+    border-color: #c7c7c7;
+    color: #4f4f4f; }
+  .alert-box.warning {
+    background-color: #fff3e0;
+    border-color: #ffcc80;
+    color: #ef6c00; }
+  .alert-box.info {
+    background-color: #a0d3e8;
+    border-color: #74bfdd;
+    color: #4f4f4f; }
+  .alert-box.alert-close {
+    opacity: 0; }

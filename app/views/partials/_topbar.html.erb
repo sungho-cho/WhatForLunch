@@ -1,0 +1,19 @@
+<br>
+<div class="row " id="topbar">
+  <div class="col s1">
+    <%= link_to(image_tag('logos/logo_30.png'), home_path) %>
+  </div>
+
+  <% if controller.action_name == 'search' %>
+    <%= render partial: "partials/form_search", locals: {form_size: "sm"} %>
+  <% end %>
+
+  <ul class="right">
+    <br>
+    <% if logged_in? %>
+      <%= link_to 'Logout', logout_path, class: "btn btn-danger btn-sm" %>
+    <% else %>
+      <%= link_to 'Login', login_path, class: "btn btn-danger btn-sm" %>
+    <% end %>
+  </ul>
+</div>

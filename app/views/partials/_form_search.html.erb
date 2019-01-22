@@ -1,0 +1,36 @@
+<%= form_with url: search_path, method: :get, id: "search" do %>
+  <br>
+  <%= "<div class='input-group input-group-#{form_size}'>".html_safe %>
+    <div class="input-group-prepend">
+      <div class="btn-group-toggle" data-toggle="buttons">
+        <%= "<label class='btn btn-outline-danger btn-#{form_size} active'>".html_safe %>
+          <%= check_box_tag 'delivery', 'yes', true %>Delivery
+        <%= '</label>'.html_safe %>
+      </div>
+      <div class="btn-group-toggle" data-toggle="buttons">
+        <%= "<label class='btn btn-outline-danger btn-#{form_size} active'>".html_safe %>
+          <%= check_box_tag 'dining', 'yes', true %>Dining
+        <%= '</label>'.html_safe %>
+      </div>
+    </div>
+    <%= text_field_tag 'location', '', :placeholder => " Address", :size => 50, :class => "form-control input-#{form_size}", "aria-label" => "", "aria-describedby" => "basic-addon1" %>
+    <%= "<span class='input-group-text' id='inputGroup-sizing-#{form_size}'><i class='fas fa-location-arrow' style='color:#5691ef'></i></span>".html_safe %>
+    <%= image_tag("logos/logo_#{form_size == 'lg' ? '50x50' : '30x30'}.png", :id => "search_button", :onclick => "submitForm();".html_safe ) %>
+    <!-- <button class="btn btn-outline-secondary btn-lg" type="button"><i class='fas fa-location-arrow' style="color:#5691ef"></i></button> -->
+  </div>
+<% end %>
+
+<!-- Search submit on enter -->
+<script>
+  function submitForm() {
+    document.getElementById("search").submit();
+  }
+  document.onkeydown = function () {
+    if (window.event.keyCode == '13') {
+        submitForm();
+    }
+  }
+  document.getElementById("search_button").onclick = function () {
+    submitForm();
+  }
+</script>

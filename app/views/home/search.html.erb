@@ -13,7 +13,7 @@
                 <h5><%= @recommendations[j]["name"] %></h5>
                 <%= @recommendations[j]["price"] %>
                 <%= @recommendations[j]["categories"][0]["title"] %><br/>
-                <%= image_tag("yelp_stars/web_and_ios/regular/regular_#{@recommendations[j]['rating'].to_i}#{'_half' if @recommendations[j]['rating'].truncate != @recommendations[j]['rating']}.png") %> <%= @recommendations[j]['distance'].to_i %>m away
+                <%= image_tag("yelp_stars/web_and_ios/regular/regular_#{@recommendations[j]['rating'].to_i}#{'_half' if @recommendations[j]['rating'].truncate != @recommendations[j]['rating']}.png") %> <%= @recommendations[j]['distance'].to_f.round(1) %>mi away
                 <br/><br/>
               </div>
             </td>

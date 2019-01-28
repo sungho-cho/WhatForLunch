@@ -39,7 +39,7 @@ module Yelp
           latitude: lat,
           longitude: lng,
           radius: DEFAULT_RADIUS,
-          sort_by: "rating",
+          sort_by: "best_match",
           limit: lim
         }
 

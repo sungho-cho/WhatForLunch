@@ -23,4 +23,9 @@ class User < ApplicationRecord
     last_name + ", " + first_name
   end
 
+  # login by username
+  def self.authenticate(username, password)
+    find_by_username(username).try(:authenticate, password)
+  end
+
 end

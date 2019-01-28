@@ -14,7 +14,10 @@
       </div>
     </div>
     <%= text_field_tag 'location', '', :placeholder => " Address", :size => 50, :class => "form-control input-#{form_size}", "aria-label" => "", "aria-describedby" => "basic-addon1" %>
-    <%= "<span class='input-group-text' id='inputGroup-sizing-#{form_size}'><i class='fas fa-location-arrow' style='color:#5691ef'></i></span>".html_safe %>
+    <div class="input-group-append">
+      <%= "<button type='button' class='btn btn-info btn-#{form_size}'><i class='fas fa-location-arrow' style='color:#5691ef'></i></button>".html_safe %>
+    </div>
+    <%# "<span class='input-group-text' id='inputGroup-sizing-#{form_size}'><i class='fas fa-location-arrow' style='color:#5691ef'></i></span>".html_safe %>
     <%= image_tag("logos/logo_#{form_size == 'lg' ? '50x50' : '30x30'}.png", :id => "search_button", :onclick => "submitForm();".html_safe ) %>
     <!-- <button class="btn btn-outline-secondary btn-lg" type="button"><i class='fas fa-location-arrow' style="color:#5691ef"></i></button> -->
   </div>

@@ -25,6 +25,15 @@ body {
   align-items: center;
 }
 
+.btn-info,
+.btn-info:hover,
+.btn-info:active,
+.btn-info:visited,
+.btn-info:focus {
+    background-color: #dddddd;
+    border-color: #dddddd;
+}
+
 /********** FLASH MSGS ********/
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;

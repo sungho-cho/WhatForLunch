@@ -45,6 +45,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'google_maps_service'
 gem 'haversine'
+gem 'geocoder'
 
 
 

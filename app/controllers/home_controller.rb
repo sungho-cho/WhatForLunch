@@ -5,50 +5,58 @@ require 'haversine'
 require 'date'
 
 class HomeController < ApplicationController
-  # before_action :check_login, only: [:search]
+  before_action :check_login, only: [:search]
 
   DEFAULT_RADIUS = 5000
   DEFAULT_RECENT = 5
   def index
+    # Geocoder.configure(lookup: :test, ip_lookup: request.ip)
+    # puts request.ip
+    # puts request.remote_ip
+    # if Rails.env.production?
+    #   request.remote_ip
+    # else
+    #   puts Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
+    # end
   end
 
   def search
     # Redirect to home if parameters are empty
-    # if params[:location].blank?
-    #   flash[:error] = "Location is invalid"
-    #   redirect_to action: 'search', location: 'Pittsburgh', delivery: params[:delivery], dining: params[:dining]
-    # end
-
-    @location = params[:location]
-    # params[:delivery], params[:dining]
-
-    # Fetching search result
-    @YelpClient = Yelp::Fusion::Client.new()
-    @GoogleClient = GoogleMaps::Geocoding::Client.new()
-    locationResult = @GoogleClient.geocode(@location)
-    latAndLong = locationResult[0][:geometry][:location]
-    @lat = latAndLong[:lat]
-    @lng = latAndLong[:lng]
-    result = @YelpClient.search(@lat, @lng)
-    @businesses = result["businesses"]
-    @total = result["total"]
-    @region = result["region"]
-
-    # Calculating recommendations
-    if @businesses.nil?
-      flash[:error] = "Location is invalid"
+    if params[:location].blank?
+      flash[:error] = "Location is blank"
       redirect_back(fallback_location: home_path)
     else
-      @rating = @businesses[0] # best rating
-      @jun = User.find(1)
-      orders = @jun.orders.to_a
-      restaurants = orders.map {|order| order.restaurant}
-      business_ids = restaurants.map {|restaurant| restaurant.business_id}
+      @location = params[:location]
+      # params[:delivery], params[:dining]
 
-      @favorite = favorite(orders,business_ids)
-      @recent = recent(orders,business_ids)
-      @recommendations = [@rating,@favorite,@recent]
-      @recommendations = toMi()
+      # Fetching search result
+      @YelpClient = Yelp::Fusion::Client.new()
+      @GoogleClient = GoogleMaps::Geocoding::Client.new()
+      locationResult = @GoogleClient.geocode(@location)
+      latAndLong = locationResult[0][:geometry][:location]
+      @lat = latAndLong[:lat]
+      @lng = latAndLong[:lng]
+      result = @YelpClient.search(@lat, @lng)
+      @businesses = result["businesses"]
+      @total = result["total"]
+      @region = result["region"]
+
+      # Calculating recommendations
+      if @businesses.nil?
+        flash[:error] = "Location is invalid"
+        redirect_back(fallback_location: home_path)
+      else
+        @rating = @businesses[0] # best rating
+        @jun = User.find(1)
+        orders = @jun.orders.to_a
+        restaurants = orders.map {|order| order.restaurant}
+        business_ids = restaurants.map {|restaurant| restaurant.business_id}
+
+        @favorite = favorite(orders,business_ids)
+        @recent = recent(orders,business_ids)
+        @recommendations = [@rating,@favorite,@recent]
+        @recommendations = toMi()
+      end
     end
   end
 
